@@ -9,10 +9,10 @@ import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
-import org.elasticsearch.client.indices.CreateIndexRequest;
 
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.client.indices.CreateIndexRequest;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.xcontent.XContentType;
 import org.elasticsearch.index.query.QueryBuilders;
@@ -59,24 +59,27 @@ public class productResources {
     }
 
 
-    @GetMapping("/product/add")
-    public String saveProduct() throws IOException {
+    @GetMapping("/product/add/{id}")
+    public RestStatus saveProduct(@PathVariable String id) throws IOException {
 
 
         BulkRequest request = new BulkRequest();
-        request.add(new IndexRequest("posts").id("1")
-                .source(XContentType.JSON,"field", "foo"));
+
+        request.add(new IndexRequest("users3", "doc", id)
+                .source(XContentType.JSON,"field", "foo"+id));
+
 
         BulkResponse bulkResponse = client.bulk(request, RequestOptions.DEFAULT);
 
-        return "done";
+        return bulkResponse.status();
     }
 
 
     @GetMapping("/product/delete/{id}")
      public RestStatus deleteDoc(@PathVariable String id) throws IOException {
          BulkRequest request = new BulkRequest();
-         request.add(new DeleteRequest("posts", id));
+         request.add(new DeleteRequest("users3", "doc", id));
+
          BulkResponse bulkResponse = client.bulk(request, RequestOptions.DEFAULT);
 
          return bulkResponse.status();
@@ -85,7 +88,7 @@ public class productResources {
      @GetMapping("/product/{id}")
     public String getDocById(@PathVariable String id) throws IOException {
 
-         GetRequest getRequest = new GetRequest("posts", id);
+         GetRequest getRequest = new GetRequest("users3","doc",id);
          GetResponse getResponse = client.get(getRequest, RequestOptions.DEFAULT);
 
         return getResponse.getSourceAsString();
@@ -100,7 +103,7 @@ public class productResources {
          SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
          searchSourceBuilder.query(QueryBuilders.matchAllQuery());
          searchRequest.source(searchSourceBuilder);
-         searchRequest.indices("posts");
+         searchRequest.indices("users3");
 
          SearchResponse searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
 
