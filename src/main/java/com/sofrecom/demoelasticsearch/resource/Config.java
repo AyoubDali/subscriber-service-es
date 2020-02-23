@@ -19,7 +19,7 @@ public  class Config {
     @Bean
     public RestHighLevelClient client(){
         ClientConfiguration clientConfiguration = ClientConfiguration.builder()
-                .connectedTo("172.18.0.3:9200")
+                .connectedTo("172.19.0.2:9200")
                 .build();
 
         return RestClients.create(clientConfiguration).rest();
