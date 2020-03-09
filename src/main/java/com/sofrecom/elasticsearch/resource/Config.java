@@ -1,4 +1,4 @@
-package com.sofrecom.demoelasticsearch.resource;
+package com.sofrecom.elasticsearch.resource;
 
 import org.apache.http.HttpHost;
 import org.apache.http.auth.AuthScope;
@@ -19,7 +19,7 @@ public  class Config {
     @Bean
     public RestHighLevelClient client(){
         ClientConfiguration clientConfiguration = ClientConfiguration.builder()
-                .connectedTo("172.19.0.2:9200")
+                .connectedTo("localhost:9200")
                 .build();
 
         return RestClients.create(clientConfiguration).rest();

@@ -1,4 +1,4 @@
-package com.sofrecom.demoelasticsearch.resource;
+package com.sofrecom.elasticsearch.resource;
 
 
 import org.elasticsearch.action.bulk.BulkRequest;
