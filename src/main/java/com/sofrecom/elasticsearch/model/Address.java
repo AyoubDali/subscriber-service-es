@@ -1,46 +1,77 @@
 package com.sofrecom.elasticsearch.model;
 
 
+import com.fasterxml.jackson.annotation.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-import org.joda.time.DateTime;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.annotation.Id;
 
-import javax.persistence.*;
+
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
-@Entity
-@Data
+
 @NoArgsConstructor
 @AllArgsConstructor
 public class Address {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+//    @Id
+//    private int id;
 
+    @NotNull
     private String city;
+    @NotNull
     private String street;
     private int zipCode;
     private String latitude;
     private String longitude;
-    private Date created_at;
-    private Date updated_at;
 
-    @PrePersist
-    protected void onCreate() {
-        created_at = new Date();
+
+    @Override
+    public String toString() {
+        return  city + ", " +street ;
     }
 
-    @PreUpdate
-    protected void onUpdate() {
-        updated_at = new Date();
+    public String getCity() {
+        return city;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    private Subscriber subscriber;
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public int getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(int zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+
 }

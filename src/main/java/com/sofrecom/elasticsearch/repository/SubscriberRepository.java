@@ -1,11 +1,8 @@
 package com.sofrecom.elasticsearch.repository;
 
 import com.sofrecom.elasticsearch.model.Subscriber;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-@Repository
-public interface SubscriberRepository extends JpaRepository<Subscriber, Integer> {
-
+public interface SubscriberRepository extends MongoRepository<Subscriber, String> {
     Subscriber findById(int id);
 }

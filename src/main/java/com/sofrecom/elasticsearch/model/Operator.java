@@ -1,42 +1,32 @@
 package com.sofrecom.elasticsearch.model;
 
 
+import com.fasterxml.jackson.annotation.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 
-import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
 
-@Entity
-@Data
+
 @NoArgsConstructor
 @AllArgsConstructor
 public class Operator {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
 
     private String name;
-    private Date created_at;
-    private Date updated_at;
 
-    @PrePersist
-    protected void onCreate() {
-        created_at = new Date();
+
+    public String getName() {
+        return name;
     }
 
-    @PreUpdate
-    protected void onUpdate() {
-        updated_at = new Date();
+    public void setName(String name) {
+        this.name = name;
     }
 
-    @OneToMany(mappedBy="operator")
-    private Set<Subscriber> subscribersSet;
 
-    public Operator(int i) {
-        id=i ;
-    }
+
 }

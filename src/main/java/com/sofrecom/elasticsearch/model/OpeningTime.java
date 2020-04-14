@@ -1,41 +1,56 @@
 package com.sofrecom.elasticsearch.model;
 
 
+import com.fasterxml.jackson.annotation.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 
-import javax.persistence.*;
 import java.sql.Time;
 import java.time.LocalTime;
 import java.util.Date;
 
-@Entity
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class OpeningTime {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
     private String day;
-    private LocalTime opening;
-    private LocalTime closing;
-    private Date created_at;
-    private Date updated_at;
+    private String  opening;
+    private String closing;
 
-    @PrePersist
-    protected void onCreate() {
-        created_at = new Date();
+
+
+    public String getDay() {
+        return day;
     }
 
-    @PreUpdate
-    protected void onUpdate() {
-        updated_at = new Date();
+    public void setDay(String day) {
+        this.day = day;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    private Subscriber subscriber;
+    public String getOpening() {
+        return opening;
+    }
+
+    public void setOpening(String opening) {
+        this.opening = opening;
+    }
+
+    public String getClosing() {
+        return closing;
+    }
+
+    public void setClosing(String closing) {
+        this.closing = closing;
+    }
+
+
+//    public Subscriber getSubscriber() {
+//        return subscriber;
+//    }
+//
+//    public void setSubscriber(Subscriber subscriber) {
+//        this.subscriber = subscriber;
+//    }
 }

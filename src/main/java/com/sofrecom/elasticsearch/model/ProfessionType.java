@@ -1,42 +1,45 @@
 package com.sofrecom.elasticsearch.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 
-import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
 
-@Data
-@Entity
+
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProfessionType {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
 
-    private String type;
-    private String category;
-    private Date created_at;
-    private Date updated_at;
-    @PrePersist
-    protected void onCreate() {
-        created_at = new Date();
+
+    private String type; // restaurant ..
+    private String category; // professionnel ou particulier
+
+
+    public String getType() {
+        return type;
     }
 
-    @PreUpdate
-    protected void onUpdate() {
-        updated_at = new Date();
+    public void setType(String type) {
+        this.type = type;
     }
 
-    @OneToMany(mappedBy="professionType")
-    private Set<Subscriber> subscribersSet;
-
-    public ProfessionType(int i) {
-        id = i;
+    public String getCategory() {
+        return category;
     }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+
+
 }

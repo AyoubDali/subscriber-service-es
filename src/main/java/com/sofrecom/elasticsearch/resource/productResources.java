@@ -45,7 +45,7 @@ public class productResources {
     @GetMapping("/product/addIndex")
     public String addProduct() throws IOException {
 
-        CreateIndexRequest request = new CreateIndexRequest("users3");
+        CreateIndexRequest request = new CreateIndexRequest("db.elasticsearchapp.subscriber");
         request.settings(Settings.builder()
                 .put("index.number_of_shards", 1)
                 .put("index.number_of_replicas", 2)
@@ -88,7 +88,7 @@ public class productResources {
      @GetMapping("/product/{id}")
     public String getDocById(@PathVariable String id) throws IOException {
 
-         GetRequest getRequest = new GetRequest("users3","doc",id);
+         GetRequest getRequest = new GetRequest("mongo5.elasticsearchapp.subscriber","doc",id);
          GetResponse getResponse = client.get(getRequest, RequestOptions.DEFAULT);
 
         return getResponse.getSourceAsString();
@@ -103,7 +103,7 @@ public class productResources {
          SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
          searchSourceBuilder.query(QueryBuilders.matchAllQuery());
          searchRequest.source(searchSourceBuilder);
-         searchRequest.indices("users3");
+         searchRequest.indices("mongo5.elasticsearchapp.subscriber");
 
          SearchResponse searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
 
