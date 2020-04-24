@@ -2,18 +2,22 @@ package com.sofrecom.elasticsearch.controller;
 
 import com.sofrecom.elasticsearch.exception.NoDataFoundException;
 import com.sofrecom.elasticsearch.model.Subscriber;
+import com.sofrecom.elasticsearch.payload.request.SignupRequest;
 import com.sofrecom.elasticsearch.repository.SubscriberRepository;
 import com.sofrecom.elasticsearch.service.SubscriberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 
 @RestController
 @RequestMapping(value = "/subscriber")
+@CrossOrigin
 public class SubscriberController {
 
     @Autowired
@@ -32,6 +36,7 @@ public class SubscriberController {
     @GetMapping("/search/{query}")
     public List<Subscriber> searchSubscriber(@PathVariable String query) throws IOException, NoDataFoundException {
 
+        System.out.println("request found");
         return subscriberService.searchForSubscriber(query);
     }
 
@@ -57,4 +62,14 @@ public class SubscriberController {
         return modelAndView;
     }
 
+
+    //@PostMapping("/add")
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public String saveSubscriber(@RequestBody Subscriber subscriber) throws IOException, NoDataFoundException {
+
+        System.out.println("query "+subscriber.getOperator().getName());
+
+        subscriberRepository.save(subscriber);
+        return "received";
+    }
 }

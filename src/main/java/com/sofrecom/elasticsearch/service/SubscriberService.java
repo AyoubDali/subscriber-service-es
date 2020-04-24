@@ -5,7 +5,6 @@ import com.google.gson.Gson;
 import com.sofrecom.elasticsearch.exception.NoDataFoundException;
 import com.sofrecom.elasticsearch.model.Subscriber;
 import com.sofrecom.elasticsearch.repository.SubscriberRepository;
-import com.sofrecom.elasticsearch.resource.Config;
 import org.elasticsearch.action.get.GetRequest;
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.search.SearchRequest;
@@ -35,10 +34,7 @@ public class SubscriberService {
 
     RestHighLevelClient client;
 
-    public SubscriberService() {
-        Config conf = new Config();
-        this.client = conf.client();
-    }
+
 
 
     public Subscriber addAddress(Subscriber subscriber){
