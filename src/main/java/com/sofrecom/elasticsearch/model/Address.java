@@ -1,23 +1,14 @@
 package com.sofrecom.elasticsearch.model;
 
-
-import com.fasterxml.jackson.annotation.*;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
 
-
-import javax.validation.constraints.NotNull;
-import java.util.Date;
 
 
 @NoArgsConstructor
 @AllArgsConstructor
 public class Address {
 
-//    @Id
-//    private int id;
 
     private String city;
     private String street;

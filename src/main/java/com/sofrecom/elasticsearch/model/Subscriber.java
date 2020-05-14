@@ -8,7 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -19,7 +18,6 @@ import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Document
 public class Subscriber implements Serializable {
 
 
@@ -27,7 +25,7 @@ public class Subscriber implements Serializable {
     public static final String SEQUENCE_NAME = "users_sequence";
 
     @Id
-    public String id;
+    public int id;
 
     private String es_id; // es id
     private String name;
@@ -45,11 +43,11 @@ public class Subscriber implements Serializable {
     private ArrayList<OpeningTime> openingTimeSet;
 
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
