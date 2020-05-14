@@ -15,9 +15,9 @@ public class LegalInformation {
 
 
     private String companyName;
-    private double siren;
-    private int nic;
-    private double siret;
+    private String siren;
+    private String nic;
+    private String siret;
     private String ape;
     private String tva;
     private String description;
@@ -31,27 +31,27 @@ public class LegalInformation {
         this.companyName = companyName;
     }
 
-    public double getSiren() {
+    public String getSiren() {
         return siren;
     }
 
-    public void setSiren(double siren) {
+    public void setSiren(String siren) {
         this.siren = siren;
     }
 
-    public int getNic() {
+    public String getNic() {
         return nic;
     }
 
-    public void setNic(int nic) {
+    public void setNic(String nic) {
         this.nic = nic;
     }
 
-    public double getSiret() {
+    public String getSiret() {
         return siret;
     }
 
-    public void setSiret(double siret) {
+    public void setSiret(String siret) {
         this.siret = siret;
     }
 

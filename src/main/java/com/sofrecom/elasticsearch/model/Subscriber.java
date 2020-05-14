@@ -31,32 +31,17 @@ public class Subscriber implements Serializable {
 
     private String es_id; // es id
     private String name;
-    private int phoneNumber;
-    private int phoneNumber2;
-    private int phoneNumber3;
+    private String phoneNumber;
+    private String phoneNumber2;
+    private String phoneNumber3;
     private String email;
     private String websiteUrl;
     private Date created_at;
     private Date updated_at;
-
-
-
     private LegalInformation legalInformation;
-
-
-   // @ManyToOne(fetch = FetchType.EAGER, optional = false)
     private ProfessionType professionType;
-
-    //@ManyToOne(fetch = FetchType.EAGER, optional = false)
-   // @JsonManagedReference
     private Operator operator;
-
-
-    //@OneToMany(mappedBy="subscriber")
     private ArrayList<Address> addressSet;
-
-
-   // @OneToMany(mappedBy="subscriber")
     private ArrayList<OpeningTime> openingTimeSet;
 
 
@@ -76,27 +61,27 @@ public class Subscriber implements Serializable {
         this.name = name;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
-    public int getPhoneNumber2() {
+    public String getPhoneNumber2() {
         return phoneNumber2;
     }
 
-    public void setPhoneNumber2(int phoneNumber2) {
+    public void setPhoneNumber2(String phoneNumber2) {
         this.phoneNumber2 = phoneNumber2;
     }
 
-    public int getPhoneNumber3() {
+    public String getPhoneNumber3() {
         return phoneNumber3;
     }
 
-    public void setPhoneNumber3(int phoneNumber3) {
+    public void setPhoneNumber3(String phoneNumber3) {
         this.phoneNumber3 = phoneNumber3;
     }
 

@@ -14,7 +14,7 @@ public class OperatorController {
     @Autowired
     OperatorRepository operatorRepository;
 
-    @GetMapping("operator/all")
+    @GetMapping("/api/operator/all")
     public List<Operator> getAllOperators() {
 
         return operatorRepository.findAll();

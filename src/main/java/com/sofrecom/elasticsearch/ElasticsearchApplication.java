@@ -9,12 +9,7 @@ import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 import net.minidev.json.parser.JSONParser;
 import net.minidev.json.parser.ParseException;
-import org.elasticsearch.action.bulk.BulkRequest;
-import org.elasticsearch.action.bulk.BulkResponse;
-import org.elasticsearch.action.index.IndexRequest;
-import org.elasticsearch.client.RequestOptions;
-import org.elasticsearch.client.RestHighLevelClient;
-import org.elasticsearch.common.xcontent.XContentType;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -53,7 +48,23 @@ public class ElasticsearchApplication implements ApplicationRunner {
     public void run(ApplicationArguments arg0) throws ParseException, IOException {
 
 
-        //System.out.println(roleRepository.findAll());
+//        Operator operator = new Operator();
+//        operator.setName("Orange");
+//        operatorRepository.save(operator);
+//        Operator operator2 = new Operator();
+//        operator2.setName("France télécom");
+//        operatorRepository.save(operator2);
+//
+//        ProfessionType professionType = new ProfessionType();
+//        professionType.setType("Restaurant");
+//        professionType.setCategory("professionnel");
+//        professionTypeRepository.save(professionType);
+//
+//        ProfessionType professionType2 = new ProfessionType();
+//        professionType2.setType("Pharmacie");
+//        professionType2.setCategory("professionnel");
+//        //System.out.println(roleRepository.findAll());
+//        professionTypeRepository.save(professionType2);
 
     }
 

@@ -19,11 +19,9 @@ public class Address {
 //    @Id
 //    private int id;
 
-    @NotNull
     private String city;
-    @NotNull
     private String street;
-    private int zipCode;
+    private String zipCode;
     private String latitude;
     private String longitude;
 
@@ -49,11 +47,11 @@ public class Address {
         this.street = street;
     }
 
-    public int getZipCode() {
+    public String getZipCode() {
         return zipCode;
     }
 
-    public void setZipCode(int zipCode) {
+    public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
 

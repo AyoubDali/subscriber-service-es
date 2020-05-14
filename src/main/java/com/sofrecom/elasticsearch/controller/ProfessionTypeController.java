@@ -19,7 +19,7 @@ public class ProfessionTypeController {
     @Autowired
     ProfessionTypeRepository professionTypeRepository;
 
-    @GetMapping("professionType/all")
+    @GetMapping("/api/professionType/all")
     public List<ProfessionType> getAllProfessionTypes() {
 
 

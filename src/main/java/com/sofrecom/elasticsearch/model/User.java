@@ -34,6 +34,17 @@ public class User {
 
   String professionType;
 
+  private Subscriber subscriber;
+
+
+  public Subscriber getSubscriber() {
+    return subscriber;
+  }
+
+  public void setSubscriber(Subscriber subscriber) {
+    this.subscriber = subscriber;
+  }
+
   public User() {
   }
 

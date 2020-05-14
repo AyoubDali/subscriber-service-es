@@ -1,22 +1,18 @@
 package com.sofrecom.elasticsearch.controller;
 
-import com.sofrecom.elasticsearch.exception.NoDataFoundException;
 import com.sofrecom.elasticsearch.model.Subscriber;
-import com.sofrecom.elasticsearch.payload.request.SignupRequest;
+import com.sofrecom.elasticsearch.model.SubscriberDTO;
+import com.sofrecom.elasticsearch.model.User;
 import com.sofrecom.elasticsearch.repository.SubscriberRepository;
+import com.sofrecom.elasticsearch.repository.UserRepository;
 import com.sofrecom.elasticsearch.service.SubscriberService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
-import javax.validation.Valid;
-import java.io.IOException;
-import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "/subscriber")
+@RequestMapping(value = "/api/subscriber")
 @CrossOrigin
 public class SubscriberController {
 
@@ -25,51 +21,36 @@ public class SubscriberController {
     @Autowired
     SubscriberRepository subscriberRepository;
 
+    @Autowired
+    UserRepository userRepository;
 
-
-    @GetMapping("/")
-    public List<Subscriber> getAllSubscribers() throws IOException, NoDataFoundException {
-
-        return subscriberService.findAll();
-    }
-
-    @GetMapping("/search/{query}")
-    public List<Subscriber> searchSubscriber(@PathVariable String query) throws IOException, NoDataFoundException {
-
-        System.out.println("request found");
-        return subscriberService.searchForSubscriber(query);
-    }
-
-
-    @PostMapping("/search")
-    public ModelAndView searchForSubscriber(@RequestParam String query) throws IOException, NoDataFoundException {
-
-        System.out.println("query"+query);
-        List<Subscriber> searchResult = subscriberService.searchForSubscriber(query);
-        ModelAndView modelAndView = new ModelAndView("Listings");
-        modelAndView.addObject("searchResult", searchResult);
-        //System.out.println(searchResult.get(0).id);
-        return modelAndView;
-    }
-
-    @GetMapping("{id}")
-    public ModelAndView getSingleListingPage(@PathVariable String id) throws IOException {
-
-        ModelAndView modelAndView = new ModelAndView("single_listing");
-        Subscriber subscriber = subscriberService.getSubscriberById(id);
-        modelAndView.addObject("subscriber", subscriber);
-//        System.out.println("type "+subscriber.getName());
-        return modelAndView;
-    }
-
-
-    //@PostMapping("/add")
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String saveSubscriber(@RequestBody Subscriber subscriber) throws IOException, NoDataFoundException {
+    public Subscriber saveSubscriber(@RequestBody SubscriberDTO subscriberDto)  {
 
-        System.out.println("query "+subscriber.getOperator().getName());
+        Optional<User> user = userRepository.findByUsername(subscriberDto.getUser());
+        System.out.println("query "+user.get().getSubscriber());
 
-        subscriberRepository.save(subscriber);
-        return "received";
+        if(user.get().getSubscriber() == null )
+            return subscriberService.saveSubscriber(subscriberDto.getSubscriber(), user.get());
+
+        return  null;
     }
+
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public Subscriber editSubscriber(@RequestBody SubscriberDTO subscriberDto)  {
+
+        Optional<User> user = userRepository.findByUsername(subscriberDto.getUser());
+        return subscriberService.editSubscriber(subscriberDto.getSubscriber(), user.get());
+
+
+    }
+
+    @RequestMapping(value = "/delete/{subscriberId}", method = RequestMethod.DELETE)
+    public void deleteSubscriber( @PathVariable String subscriberId)  {
+
+        System.out.println(subscriberId);
+        subscriberService.deleteSubscriber(subscriberId);
+
+    }
+
 }
