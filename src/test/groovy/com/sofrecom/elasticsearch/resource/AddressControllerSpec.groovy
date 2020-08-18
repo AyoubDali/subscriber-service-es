@@ -11,51 +11,6 @@ class AddressControllerSpec extends Specification {
 
 
 
-//    //declare variables
-//      AddressController addressController
-//      MockMvc mockMvc
-//      ObjectMapper mapper = new ObjectMapper()
-//      def requestUri = '/address/'
-//
-//      Address address1
-//      Address address2
-//      String address1JsonString
-//      String address2JsonString
-//
-//      void setup(){
-//          addressRepository = Mock(AddressRepository)
-//          addressController = new AddressController()
-//          mockMvc = MockMvcBuilders
-//                  .standaloneSetup(addressController)
-//                  .alwaysDo(MockMvcResultHandlers.print())
-//                  .build()
-//
-//          address1 = new Address([id:1, city:"Lyon", street:"Quartier Les Halles, Lyon 1er Arrondissemen",
-//                                  zipCode:1000, latitude:"48.8633", longitude:"2.34837"])
-//
-//          address2 = new Address([id:2, city:"Lyon", street:"Quartier Les Halles, Lyon 2eme Arrondissemen",
-//                                  zipCode:1111, latitude:"48.8633", longitude:"2.34837"])
-//
-//          address1JsonString = mapper.writeValueAsString(address1)
-//          address2JsonString = mapper.writeValueAsString(address2)
-//      }
-//
-//
-//   /*  void 'save address'() {
-//          given:
-//          address1 = new Address([id:1, city:"Lyon", street:"Quartier Les Halles, Lyon 1er Arrondissemen",
-//                                  zipCode:1000, latitude:"48.8633", longitude:"2.34837"])
-//          address1JsonString = mapper.writeValueAsString(address1)
-//
-//          1 * addressRepository.save(address1) >> null
-//
-//          expect:
-//          mockMvc.perform(MockMvcRequestBuilders
-//                  .post(requestUri+'/add').contentType(MediaType.APPLICATION_JSON).content(address1JsonString))
-//                  .andExpect(MockMvcResultMatchers.status().isOk())
-//      }
-//*/
-
     void 'test get address return a valid address '(){
 
         given:
